@@ -12,7 +12,6 @@ query_data =
         |> filter(fn: (r) => r["_measurement"] == "command_feedback")
         |> filter(fn: (r) => r["site_id"] == "example_site")
         |> filter(fn: (r) => r["_field"] == "action_status")
-        |> aggregateWindow(every: 1m, fn: mean)
         |> aggregateWindow(every: 30m, fn: max, createEmpty: false)
         |> filter(fn: (r) => r._value == 8.0)
         |> group(columns: ["site_id", "_measurement"], mode: "by")
